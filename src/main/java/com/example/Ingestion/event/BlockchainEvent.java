@@ -10,13 +10,11 @@ public class BlockchainEvent {
     public BlockchainEvent(EventTypeEnum eventType, String source, Object payload) {
         this.eventId = java.util.UUID.randomUUID().toString();
         this.eventType = eventType.toString();
-        this.timestamp = LocalDateTime.now();
         this.source = source;
         this.payload = payload;
     }
     private String eventId;
     private String eventType;
-    private LocalDateTime timestamp;
     private String source;
     private Object payload;
 }
