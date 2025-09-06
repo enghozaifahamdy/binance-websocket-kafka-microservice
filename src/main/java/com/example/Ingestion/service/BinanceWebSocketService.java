@@ -41,10 +41,10 @@ public class BinanceWebSocketService {
     @Value("${binance.websocket.url}")
     private String BINANCE_WS_URL;
 
-    @Value("${binance.symbols:btcusdt,ethusdt,bnbusdt,adausdt,dotusdt}")
+    @Value("${binance.symbols}")
     private String symbolsConfig;
 
-    @Value("${binance.stream-types:trade,ticker}")
+    @Value("${binance.stream-types}")
     private String streamTypesConfig;
 
     private final AtomicLong receivedMessages = new AtomicLong(0);
@@ -84,7 +84,7 @@ public class BinanceWebSocketService {
             String streamUrl = BINANCE_WS_URL + streamsBuilder.toString();
             URI uri = new URI(streamUrl);
 
-            logger.info("🔗 Connecting to: {}", streamUrl);
+            logger.info("Connecting to: {}", streamUrl);
 
             client = new WebSocketClient(uri) {
                 @Override
@@ -176,30 +176,17 @@ public class BinanceWebSocketService {
                 logger.warn("WebSocket connection is down, attempting reconnect...");
                 scheduleReconnect();
             } else {
-                logger.info("Health Check - Connection: HEALTHY | Messages: {} | Published Events: {}",
-                        receivedMessages.get(), eventPublisher.getPublishedEventsCount());
+                logger.info("Health Check - Connection: HEALTHY | Messages: {} ",
+                        receivedMessages.get());
             }
         }, 30, 30, TimeUnit.SECONDS);
     }
 
     private void startMetricsLogging() {
         scheduler.scheduleAtFixedRate(() -> {
-            logger.info("METRICS - Received: {} | Trades: {} | Tickers: {} | Published: {}",
-                    receivedMessages.get(), processedTrades.get(), processedTickers.get(),
-                    eventPublisher.getPublishedEventsCount());
+            logger.info("METRICS - Received: {} | Trades: {} | Tickers: {} ",
+                    receivedMessages.get(), processedTrades.get(), processedTickers.get());
         }, 60, 60, TimeUnit.SECONDS);
-    }
-
-    public long getReceivedMessagesCount() {
-        return receivedMessages.get();
-    }
-
-    public long getProcessedTradesCount() {
-        return processedTrades.get();
-    }
-
-    public long getProcessedTickersCount() {
-        return processedTickers.get();
     }
 
     @PreDestroy

@@ -31,8 +31,6 @@ public class KafkaEventPublisherService {
     @Value("${kafka.topics.blockchain-events}")
     private String eventsTopic;
 
-    private final AtomicLong publishedEvents = new AtomicLong(0);
-
     public void publishEvent(EventTypeEnum eventType, Object data) {
         switch (eventType) {
             case TRADE:
@@ -42,30 +40,17 @@ public class KafkaEventPublisherService {
                 publishEvent(tickersTopic, new BlockchainEvent(eventType, "BINANCE", data));
                 break;
             default:
+                publishEvent(eventsTopic, new BlockchainEvent(eventType, "BINANCE", data));
                 break;
         }
     }
 
     private void publishEvent(String topic, BlockchainEvent event) {
         try {
-            CompletableFuture<SendResult<String, BlockchainEvent>> future = kafkaTemplate.send(topic, event);
-
-            future.thenAccept(result -> {
-                long count = publishedEvents.incrementAndGet();
-                logger.debug("Event published successfully to topic: {} |  EventId: {} | Total: {}",
-                        topic, event.getEventId(), count);
-            }).exceptionally(throwable -> {
-                logger.error("Failed to publish event to topic: {} |  EventId: {} | Error: {}",
-                        topic, event.getEventId(), throwable.getMessage());
-                return null;
-            });
-
+            kafkaTemplate.send(topic, event);
         } catch (Exception e) {
             logger.error("Exception while publishing event: {}", e.getMessage(), e);
         }
     }
 
-    public long getPublishedEventsCount() {
-        return publishedEvents.get();
-    }
 }
