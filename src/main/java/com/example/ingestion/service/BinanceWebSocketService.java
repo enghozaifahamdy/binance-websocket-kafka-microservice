@@ -1,10 +1,10 @@
-package com.example.Ingestion.service;
+package com.example.ingestion.service;
 
 
-import com.example.Ingestion.enums.EventTypeEnum;
-import com.example.Ingestion.event.TickerEvent;
-import com.example.Ingestion.event.TradeEvent;
-import com.example.Ingestion.mapper.EventMapper;
+import com.example.ingestion.enums.EventTypeEnum;
+import com.example.ingestion.event.TickerEvent;
+import com.example.ingestion.event.TradeEvent;
+import com.example.ingestion.mapper.EventMapper;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 import org.springframework.beans.factory.annotation.Autowired;

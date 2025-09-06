@@ -1,9 +1,7 @@
-package com.example.Ingestion.event;
+package com.example.ingestion.event;
 
-import com.example.Ingestion.enums.EventTypeEnum;
+import com.example.ingestion.enums.EventTypeEnum;
 import lombok.Data;
-
-import java.time.LocalDateTime;
 
 @Data
 public class BlockchainEvent {

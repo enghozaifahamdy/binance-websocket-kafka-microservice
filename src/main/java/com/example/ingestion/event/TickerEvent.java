@@ -1,4 +1,4 @@
-package com.example.Ingestion.event;
+package com.example.ingestion.event;
 
 import lombok.Data;
 

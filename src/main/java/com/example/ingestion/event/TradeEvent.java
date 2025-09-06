@@ -1,7 +1,6 @@
-package com.example.Ingestion.event;
+package com.example.ingestion.event;
 
 import lombok.Data;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Data
 public class TradeEvent extends BaseEvent{

@@ -1,4 +1,4 @@
-package com.example.Ingestion;
+package com.example.ingestion;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

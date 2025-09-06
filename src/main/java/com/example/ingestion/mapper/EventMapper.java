@@ -1,8 +1,8 @@
-package com.example.Ingestion.mapper;
+package com.example.ingestion.mapper;
 
 
-import com.example.Ingestion.event.TickerEvent;
-import com.example.Ingestion.event.TradeEvent;
+import com.example.ingestion.event.TickerEvent;
+import com.example.ingestion.event.TradeEvent;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -10,21 +10,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface EventMapper {
 
-//    default TickerEvent tickerToKafkaEvent(JsonNode json){
-//        TickerEvent tickerEvent = new TickerEvent();
-//        tickerEvent.setEventType(getStringValue(json, "e"));
-//        tickerEvent.setEventTimestamp(getLongValue(json, "E"));
-//        tickerEvent.setSymbol(getStringValue(json, "s"));
-//        return tickerEvent;
-//    }
-//
-//    default TradeEvent tradeToKafkaEvent(JsonNode json){
-//        TradeEvent tradeEvent = new TradeEvent();
-//        tradeEvent.setEventType(getStringValue(json, "e"));
-//        tradeEvent.setEventTimestamp(getLongValue(json, "E"));
-//        tradeEvent.setSymbol(getStringValue(json, "s"));
-//        return tradeEvent;
-//    }
     @Mapping(target = "eventType", expression = "java(getStringValue(json, \"e\"))")
     @Mapping(target = "eventTimestamp", expression = "java(getLongValue(json, \"E\"))")
     @Mapping(target = "symbol", expression = "java(getStringValue(json, \"s\"))")
@@ -72,7 +57,4 @@ public interface EventMapper {
     default Boolean getBooleanValue(JsonNode json, String field) {
         return json.has(field) && !json.get(field).isNull() ? json.get(field).asBoolean() : null;
     }
-
-
-
 }

@@ -1,4 +1,4 @@
-package com.example.Ingestion;
+package com.example.ingestion;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

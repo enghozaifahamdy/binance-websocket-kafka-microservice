@@ -1,18 +1,13 @@
-package com.example.Ingestion.service;
+package com.example.ingestion.service;
 
-import com.example.Ingestion.enums.EventTypeEnum;
-import com.example.Ingestion.event.BlockchainEvent;
+import com.example.ingestion.enums.EventTypeEnum;
+import com.example.ingestion.event.BlockchainEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.CompletableFuture;
-
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class KafkaEventPublisherService {

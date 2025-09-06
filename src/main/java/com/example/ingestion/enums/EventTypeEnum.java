@@ -1,4 +1,4 @@
-package com.example.Ingestion.enums;
+package com.example.ingestion.enums;
 
 public enum EventTypeEnum {
     TRADE,

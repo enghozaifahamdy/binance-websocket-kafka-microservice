@@ -1,6 +1,6 @@
-package com.example.Ingestion.configuration;
+package com.example.ingestion.configuration;
 
-import com.example.Ingestion.event.BlockchainEvent;
+import com.example.ingestion.event.BlockchainEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

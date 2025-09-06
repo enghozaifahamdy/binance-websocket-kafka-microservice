@@ -1,6 +1,5 @@
-package com.example.Ingestion.event;
+package com.example.ingestion.event;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
